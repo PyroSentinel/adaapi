@@ -146,7 +146,7 @@ export default function CreateReporterPage() {
         />
       )}
       <div className="space-5 fixed inset-x-0 bottom-4 h-auto px-2">
-        <Card className="relative bottom-5">
+        <Card className="relative bottom-5 bg-background/90">
           <Button
             onClick={() => {
               setExpanded(!expanded);
@@ -166,7 +166,7 @@ export default function CreateReporterPage() {
             </CardDescription>
           </CardHeader>
         </Card>
-        <Card className={cn(expanded ? 'relative' : 'hidden')}>
+        <Card className={cn('bg-background/90', expanded ? 'relative' : 'hidden')}>
           <CardHeader>
             <CardTitle>Detail tambahan</CardTitle>
             <CardDescription>

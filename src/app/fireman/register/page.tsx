@@ -218,17 +218,17 @@ export default function RegisterFiremanPage() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button className="w-full" type="button" size={'lg'}>
-                      Kirim Laporan
+                      Register
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>Konfirmasi Pengiriman Laporan</DialogTitle>
+                      <DialogTitle>Konfirmasi Registrasi Fireman</DialogTitle>
                     </DialogHeader>
                     <div>
                       <ConfirmLogo className="mx-auto mb-4 size-20" />
                       <p className="text-center text-sm text-muted-foreground">
-                        Apakah kamu yakin ingin mengirim laporan ini sekarang?
+                        Apakah kamu yakin untuk melakukan registrasi akun fireman?
                       </p>
                     </div>
                     <DialogFooter>

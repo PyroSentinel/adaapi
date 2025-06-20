@@ -42,13 +42,14 @@ import { Datum } from './response';
 
 const STATUS = [
   { value: 'pending', label: 'Pending' },
-  { value: 'proses', label: 'Proses' },
-  { value: 'selesai', label: 'Selesai' },
+  { value: 'process', label: 'Proses' },
+  { value: 'completed', label: 'Selesai'},
+  { value: 'all', label: 'Semua'},
 ];
 
 export default function ReporterHistoryPage() {
   const [statusOpen, setStatusOpen] = useState(false);
-  const [status, setStatus] = useState<string>('proses');
+  const [status, setStatus] = useState<string>('all');
   const [reportsData, setReportsData] = useState<Datum[]>([]);
   const [reportsGrouped, setReportsGrouped] = useState<Datum[]>([]);
   const getReports = useCallback(async () => {
@@ -69,8 +70,8 @@ export default function ReporterHistoryPage() {
   }, [getReports]);
 
   return (
-    <main>
-      <header className="px-4 pt-4">
+    <main className='bg-gradient-to-b from-primary/5 to-primary/10 min-h-lvh'>
+      <header className="px-4 mt-4">
         <h1 className="text-center text-xl font-semibold">Riwayat Laporan</h1>
       </header>
       <section className="my-4 flex items-center justify-between gap-2 px-4">
@@ -121,6 +122,9 @@ export default function ReporterHistoryPage() {
       </section>
       <section className="my-4 space-y-4 px-4 pb-32">
         {reportsGrouped.map((rg) => (
+          status === 'all' ?
+          <CardWithDialog key={rg.id} mainReport={rg} allReport={reportsData} />
+          : rg.group.status === status &&
           <CardWithDialog key={rg.id} mainReport={rg} allReport={reportsData} />
         ))}
         {reportsGrouped.length === 0 && (
@@ -129,13 +133,10 @@ export default function ReporterHistoryPage() {
           </p>
         )}
       </section>
-      <nav className="fixed inset-x-4 bottom-4 z-50 rounded-lg bg-background shadow">
+      <nav className="fixed inset-x-4 bottom-4 z-50 rounded-lg shadow backdrop-blur-md  bg-background/10">
         <div className="flex items-stretch justify-between gap-2 p-2">
           <Link href={'/reporter'} className="flex-1">
-            <Button
-              className="size-14 w-full flex-col gap-1"
-              variant={'secondary'}
-            >
+            <Button className="size-14 w-full flex-col gap-1" variant={'ghost'}>
               <House className="size-7" />
               <span className="text-xs">Beranda</span>
             </Button>
