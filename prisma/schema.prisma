@@ -1,0 +1,91 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../node_modules/.prisma/client"
+  previewFeatures = ["typedSql"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model fireman {
+  id                   Int                    @id @default(autoincrement())
+  name                 String                 @db.VarChar(100)
+  email                String                 @unique @db.VarChar(100)
+  password             String                 @db.VarChar(100)
+  longitude            Float
+  latitude             Float
+  location_name        String
+  created_at           DateTime?              @default(now()) @db.Timestamp(6)
+  updated_at           DateTime?              @default(now()) @db.Timestamp(6)
+  fireman_report_group fireman_report_group[]
+}
+
+model fireman_report_group {
+  id         Int       @id @default(autoincrement())
+  group_id   Int
+  fireman_id Int
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  updated_at DateTime? @default(now()) @db.Timestamp(6)
+  fireman    fireman   @relation(fields: [fireman_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  group      group     @relation(fields: [group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model group {
+  id                   Int                    @id @default(autoincrement())
+  status               report_status?
+  report_id            Int?
+  created_at           DateTime?              @default(now()) @db.Timestamp(6)
+  updated_at           DateTime?              @default(now()) @db.Timestamp(6)
+  fireman_report_group fireman_report_group[]
+  report               report?                @relation(fields: [report_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  report_group_member  report_group_member[]
+}
+
+model report {
+  id                  Int                   @id @default(autoincrement())
+  media_url           String
+  type                media_type
+  email               String?               @db.VarChar(120)
+  longitude           Float
+  latitude            Float
+  location_name       String
+  description         String?
+  is_anonymous        Boolean?              @default(false)
+  is_secret           Boolean?              @default(false)
+  created_at          DateTime?             @default(now()) @db.Timestamp(6)
+  updated_at          DateTime?             @default(now()) @db.Timestamp(6)
+  group               group[]
+  report_group_member report_group_member[]
+}
+
+model report_group_member {
+  id            Int         @id @default(autoincrement())
+  validation_id Int?
+  report_id     Int?
+  group_id      Int?
+  group         group?      @relation(fields: [group_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  report        report?     @relation(fields: [report_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  validation    validation? @relation(fields: [validation_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model validation {
+  id                  Int                   @id @default(autoincrement())
+  verified            Boolean?              @default(false)
+  accuracy            Float
+  created_at          DateTime?             @default(now()) @db.Timestamp(6)
+  updated_at          DateTime?             @default(now()) @db.Timestamp(6)
+  report_group_member report_group_member[]
+}
+
+enum media_type {
+  video
+  image
+}
+
+enum report_status {
+  process
+  pending
+  completed
+}
