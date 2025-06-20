@@ -16,28 +16,30 @@ export default function Feature() {
               src={
                 'https://images.unsplash.com/photo-1519389950473-47ba0277781c'
               }
-              alt="Sistem Manajemen Praktikum"
+              alt="Aplikasi Digital Akselerasi Antisipasi Kebakaran Indonesia"
               width={1024}
               height={1024}
               className="h-60 rounded-lg object-cover object-center"
             />
             <CardTitle className="text-xl sm:text-2xl">
-              Kenapa Sistem Ini Dibuat?
+              Kenapa Aplikasi Ini Dibuat?
             </CardTitle>
             <CardDescription className="text-base xl:text-lg">
-              Praktikum melibatkan banyak pihak: admin, asisten, dan praktikan.
-              Sistem ini hadir untuk memudahkan pengelolaan data, jadwal,
-              kehadiran, dan penilaian secara terintegrasi.
+              Kebakaran adalah ancaman serius yang dapat terjadi kapan saja dan
+              di mana saja baik di kawasan permukiman, hutan, maupun lahan
+              terbuka. Sayangnya, proses pelaporan secara manual sering kali
+              lambat, tidak akurat, dan menyulitkan koordinasi antarinstansi.
+              Untuk itulah adaapi hadir sebagai solusi cerdas dan cepat dalam
+              menghadapi kondisi darurat kebakaran.
             </CardDescription>
             <CardDescription className="text-base xl:text-lg">
-              Semua proses administrasi dan monitoring praktikum kini bisa
-              dilakukan secara digital, transparan, dan efisien. Sistem ini juga
-              membantu mengurangi human error, mempercepat akses informasi, dan
-              meningkatkan kolaborasi antar pihak.
-            </CardDescription>
-            <CardDescription className="text-base xl:text-lg">
-              Dengan adanya sistem ini, kolaborasi antara admin, asisten, dan
-              praktikan menjadi lebih terstruktur.
+              adaapi adalah sistem pelaporan kebakaran berbasis kecerdasan
+              buatan (AI) yang dirancang untuk memangkas waktu pelaporan dari
+              yang biasanya memakan waktu 5 menit menjadi hanya sekitar 10 detik
+              saja. Pengguna cukup mengambil foto atau video kejadian, dan
+              sistem secara otomatis akan mendeteksi lokasi kejadian melalui GPS
+              serta mengirimkannya ke pusat komando, pemadam kebakaran, dan
+              instansi terkait.
             </CardDescription>
           </CardContent>
         </Card>
@@ -45,20 +47,23 @@ export default function Feature() {
           <CardContent className="flex flex-col gap-4 px-3 sm:px-6 lg:px-4 xl:px-6">
             <Image
               src={
-                'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158'
+                'https://ik.imagekit.io/aipproject/face-recognition-personal-identification-collage.jpg'
               }
-              alt="Manajemen Data Praktikan"
+              alt="Pendeteksi Kebakaran Berbasis AI"
               width={1024}
               height={1024}
               className="rounded-lg object-cover object-center lg:h-45 xl:h-40"
             />
             <CardTitle className="text-xl sm:text-2xl">
-              Manajemen Data Praktikan
+              Pendeteksi Kebakaran Berbasis AI
             </CardTitle>
             <CardDescription className="text-base xl:text-lg">
-              Admin dapat mengelola data praktikan, kelas, dan jadwal dengan
-              mudah. Praktikan dapat melihat jadwal, nilai, dan kehadiran mereka
-              secara real-time.
+              Dengan dukungan AI, adaapi mampu memverifikasi laporan secara
+              otomatis, menyaring laporan palsu, dan mempercepat distribusi
+              informasi ke pihak-pihak yang tepat. Sistem ini dilengkapi dengan
+              peta interaktif yang menampilkan lokasi kebakaran secara
+              real-time, membantu tim darurat bergerak lebih cepat dan akurat
+              menuju lokasi.
             </CardDescription>
           </CardContent>
         </Card>
@@ -66,20 +71,23 @@ export default function Feature() {
           <CardContent className="flex flex-col gap-4 px-3 sm:px-6 lg:px-4 xl:px-6">
             <Image
               src={
-                'https://images.unsplash.com/photo-1528901166007-3784c7dd3653'
+                'https://ik.imagekit.io/aipproject/3d-view-map.jpg?updatedAt=1750415841314'
               }
-              alt="Peran Asisten Praktikum"
+              alt="Lokasi Otomatis Dengan Peta Interaktif"
               width={1024}
               height={1024}
-              className="h-35 rounded-lg object-cover object-center"
+              className="h-40 rounded-lg object-cover object-center"
             />
             <CardTitle className="text-xl sm:text-2xl">
-              Peran Asisten Praktikum
+              Lokasi Otomatis Dengan Peta Interaktif
             </CardTitle>
             <CardDescription className="text-base xl:text-lg">
-              Asisten dapat mengelola kehadiran, penilaian, dan laporan
-              praktikum secara online. Kolaborasi antara admin, asisten, dan
-              praktikan menjadi lebih mudah.
+              Semua laporan, status penanganan, dan riwayat kejadian tersimpan
+              dalam satu platform yang aman dan terintegrasi. Masyarakat dapat
+              melaporkan dan memantau kondisi, petugas pemadam dapat langsung
+              bertindak berdasarkan data visual dan lokasi yang akurat,
+              sementara instansi pemerintah dapat memantau dan mengambil
+              keputusan dengan lebih transparan dan efisien.
             </CardDescription>
           </CardContent>
         </Card>
@@ -87,20 +95,21 @@ export default function Feature() {
           <CardContent className="flex flex-col gap-4 px-3 sm:px-6 lg:px-4 xl:px-6">
             <Image
               src={
-                'https://images.unsplash.com/photo-1587691592099-24045742c181'
+                'https://ik.imagekit.io/aipproject/firefighters-rescued-survivors.jpg'
               }
-              alt="Integrasi & Transparansi"
+              alt="Cepat Tanggap & Mudah Digunakan"
               width={1024}
               height={1024}
               className="w-full rounded-lg object-cover object-center lg:h-45 xl:h-50"
             />
             <CardTitle className="text-xl sm:text-2xl">
-              Integrasi & Transparansi
+              Cepat Tanggap & Mudah Digunakan
             </CardTitle>
             <CardDescription className="text-base xl:text-lg">
-              Semua data dan proses praktikum terintegrasi dalam satu platform.
-              Setiap user (admin, asisten, praktikan) memiliki akses sesuai
-              peran dan kebutuhan.
+              Dengan adaapi, penanganan kebakaran menjadi lebih cepat,
+              terstruktur, dan menyelamatkan lebih banyak nyawa. Kini, siapa pun
+              bisa menjadi bagian dari solusi tanggap bencana hanya dalam
+              hitungan detik.
             </CardDescription>
           </CardContent>
         </Card>
