@@ -34,6 +34,7 @@ export interface Group {
   status: string;
   created_at: string;
   updated_at: string;
+  fireman_report_group: FiremanReportGroup[];
 }
 
 export interface Report {

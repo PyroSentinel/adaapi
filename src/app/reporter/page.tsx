@@ -1,49 +1,35 @@
 import Logo from '@/components/custom/logo';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { History, House } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ReporterPage() {
   return (
-    <main className="h-lvh">
-      <header className="p-4">
-        <div className="flex items-center gap-5">
-          <Avatar className="size-14 border-2 border-primary">
-            <AvatarImage
-              src={
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
-              }
-              className="object-cover object-center"
-            />
-            <AvatarFallback>AP</AvatarFallback>
-          </Avatar>
-          <div>
-            <p className="text-sm leading-4 text-muted-foreground">
-              Welcome to the reporter page!
-            </p>
-            <h1 className="text-xl font-medium">Reporter</h1>
-          </div>
+    <main className="relative h-lvh bg-[radial-gradient(circle_at_center,color-mix(in_oklab,_var(--primary)_60%,_transparent)_0%,color-mix(in_oklab,_var(--primary)_5%,_transparent)_40%)]">
+      <section className="mb-4 flex flex-col gap-64 p-4">
+        <div className='absolute inset-x-8 top-18'>
+          <h1 className="mb-2 text-center text-3xl font-semibold">
+            Ada Bahaya?
+          </h1>
+          <p className="text-center text-muted-foreground">
+            Tekan tombol darurat kebakaran dibawah untuk melaporkan kebakaran
+          </p>
         </div>
-      </header>
-      <section className="mt-22 mb-4 p-4">
-        <h1 className="mb-2 text-center text-3xl font-semibold">Ada Bahaya?</h1>
-        <p className="text-center text-muted-foreground">
-          Tekan tombol darurat kebakaran dibawah untuk melaporkan kebakaran
-        </p>
-        <Link href={'/reporter/create'}>
-          <div className="relative mx-auto mt-14 flex size-65 items-center justify-center">
-            <div className="absolute mx-auto size-70 rounded-full bg-primary/30"></div>
-            <div className="absolute mx-auto size-57 rounded-full bg-primary/50"></div>
-            <div className="absolute mx-auto size-43 rounded-full bg-primary/70"></div>
-            <Logo className="absolute mx-auto size-18" />
-          </div>
-        </Link>
-        <p className="mt-20 text-center text-sm text-muted-foreground">
+        <p className="absolute inset-x-8 bottom-40 text-center text-sm text-muted-foreground">
           Pastikan laporan yang kamu kirim benar adanya!
         </p>
       </section>
-      <nav className="fixed inset-x-4 bottom-4 z-50 rounded-lg bg-background shadow">
+      <div className="absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center">
+        <Link href={'/reporter/create'}>
+          <div className="relative mx-auto flex size-65 items-center justify-center">
+            <div className="absolute mx-auto size-70 rounded-full bg-primary/5"></div>
+            <div className="absolute mx-auto size-57 rounded-full bg-primary/25"></div>
+            <div className="absolute mx-auto size-43 rounded-full bg-primary/90"></div>
+            <Logo className="absolute mx-auto size-18 text-white" />
+          </div>
+        </Link>
+      </div>
+      <nav className="fixed inset-x-4 bottom-4 z-50 rounded-lg bg-background/10 shadow backdrop-blur-md">
         <div className="flex items-stretch justify-between gap-2 p-2">
           <Link href={'/reporter'} className="flex-1">
             <Button
@@ -55,10 +41,7 @@ export default function ReporterPage() {
             </Button>
           </Link>
           <Link href={'/reporter/history'} className="flex-1">
-            <Button
-              className="size-14 w-full flex-col gap-1"
-              variant={'secondary'}
-            >
+            <Button className="size-14 w-full flex-col gap-1" variant={'ghost'}>
               <History className="size-7" />
               <span className="text-xs">Riwayat</span>
             </Button>

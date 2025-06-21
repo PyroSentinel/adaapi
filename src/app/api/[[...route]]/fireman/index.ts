@@ -76,7 +76,7 @@ fireman.post(
       data: { status: 'process' },
     });
 
-    return c.json({ data: { updateGroup } });
+    return c.json({ data: { updateGroup, firemanReportGroup } });
   },
 );
 
