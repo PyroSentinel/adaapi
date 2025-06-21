@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
       { hostname: 'images.pexels.com' },
       { hostname: 'picsum.photos' },
       { hostname: 'placeimg.com' },
+      { hostname: 'ik.imagekit.io' },
     ],
   },
 };
