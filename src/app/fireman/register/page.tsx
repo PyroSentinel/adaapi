@@ -104,6 +104,7 @@ export default function RegisterFiremanPage() {
       body: JSON.stringify(values),
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const data = await res.json();
     if (res.ok) {
       toast.success('Pendaftaran berhasil! Silahkan masuk.');

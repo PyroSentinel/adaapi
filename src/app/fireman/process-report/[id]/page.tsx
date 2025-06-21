@@ -110,6 +110,7 @@ export default function Page() {
         toast.error(errorData.message || 'Gagal memproses laporan.');
         return;
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const json = await response.json();
       toast.success('Laporan berhasil diproses.');
       router.push('/fireman');
@@ -136,6 +137,7 @@ export default function Page() {
         toast.error(errorData.message || 'Gagal menyelesaikan laporan.');
         return;
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const json = await response.json();
       toast.success('Laporan berhasil diselesaikan.');
       router.push('/fireman');

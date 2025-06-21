@@ -47,6 +47,7 @@ const STATUS = [
 ];
 
 export default function ReporterHistoryPage() {
+  const [q, setQ] = useState<string>('');
   const [statusOpen, setStatusOpen] = useState(false);
   const [status, setStatus] = useState<string>('all');
   const [reportsData, setReportsData] = useState<Datum[]>([]);
@@ -74,7 +75,11 @@ export default function ReporterHistoryPage() {
         <h1 className="text-center text-xl font-semibold">Riwayat Laporan</h1>
       </header>
       <section className="my-4 flex items-center justify-between gap-2 px-4">
-        <Input placeholder="Cari laporan" />
+        <Input
+          placeholder="Cari laporan"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+        />
         <Popover open={statusOpen} onOpenChange={setStatusOpen}>
           <PopoverTrigger asChild>
             <Button
@@ -120,23 +125,26 @@ export default function ReporterHistoryPage() {
         </Popover>
       </section>
       <section className="my-4 space-y-4 px-4 pb-32">
-        {reportsGrouped.map((rg) =>
-          status === 'all' ? (
-            <CardWithDialog
-              key={rg.id}
-              mainReport={rg}
-              allReport={reportsData}
-            />
-          ) : (
-            rg.group.status === status && (
+        {reportsGrouped
+          .filter((rg) => !rg.report.is_secret)
+          .filter((rg) => rg.report.description.includes(q))
+          .map((rg) =>
+            status === 'all' ? (
               <CardWithDialog
                 key={rg.id}
                 mainReport={rg}
                 allReport={reportsData}
               />
-            )
-          ),
-        )}
+            ) : (
+              rg.group.status === status && (
+                <CardWithDialog
+                  key={rg.id}
+                  mainReport={rg}
+                  allReport={reportsData}
+                />
+              )
+            ),
+          )}
         {reportsGrouped.length === 0 && (
           <p className="text-center text-sm text-muted-foreground">
             Tidak ada laporan dengan status {status || 'terpilih'}

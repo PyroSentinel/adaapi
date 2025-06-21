@@ -27,15 +27,7 @@ import { Datum } from './response';
 
 import 'react-medium-image-zoom/dist/styles.css';
 
-const STATUS = [
-  { value: 'pending', label: 'Pending' },
-  { value: 'proses', label: 'Proses' },
-  { value: 'selesai', label: 'Selesai' },
-];
-
 export default function FiremanHistoryPage() {
-  const [statusOpen, setStatusOpen] = useState(false);
-  const [status, setStatus] = useState<string>('proses');
   const [reportsData, setReportsData] = useState<Datum[]>([]);
   const [reportsGrouped, setReportsGrouped] = useState<Datum[]>([]);
   const getReports = useCallback(async () => {

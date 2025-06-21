@@ -109,6 +109,7 @@ export default function CreateReporterPage() {
       body: JSON.stringify(values),
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const data = await res.json();
     if (res.ok) {
       toast.success('Berhasil melaporkan.');

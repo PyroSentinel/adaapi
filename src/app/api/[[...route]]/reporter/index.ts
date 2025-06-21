@@ -1,3 +1,4 @@
+import sendMail from '@/lib/sendMail';
 import prisma from '@db';
 import { zValidator } from '@hono/zod-validator';
 import { findNearestGroup } from '@sql';
@@ -116,6 +117,39 @@ reporter.post('/', zValidator('json', ReportSchema), async (c) => {
       accuracy,
     },
   });
+
+  const fireman = await prisma.fireman.findMany({});
+
+  const toFireman = fireman.map((f) => `${f.name} <${f.email}>`).join(',');
+
+  const mailOptions = {
+    from: `AdaApi <${process.env.SMTP_EMAIL_USER}>`,
+    to: toFireman,
+    subject: 'Fire Notification',
+    html: `
+  <div style="font-family: 'Roboto', sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ffa200; border-radius: 12px; background-color: #fff8f6; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div style="text-align: center; margin-bottom:40px;">
+      <img src="https://ik.imagekit.io/aipproject/ADAAPI.png" alt="AdaApi Logo" style="height: 50px; margin-bottom: 35px;" />
+    <br>
+      <h1 style="font-family: 'Gill Sans', 'Gill Sans MT'; color: #ffa200; font-size: 24px; margin: 0; border: 2px solid #ffa200; display: inline-block; padding: 5px 10px; border-radius: 6px;">Fire Notification</h1>
+    </div>
+      <p style="color: #410002">${description}</p>
+    <div style="text-align: center; margin: 20px 0;">
+      <p style="color: #410002 ;font-weight: bold;">Terdeteksi kebakaran disini:</p>
+      <a href="https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}" style="display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff8f6; background-color: #ffa200; text-decoration: none; border-radius: 5px;">
+      <span style="vertical-align: middle;">Cek Lokasi</span>
+      </a>
+    </div>
+    <hr style="border: none; border-top: 1px solid #ffa200; margin: 20px 0;" />
+    <p style="font-family: 'Gill Sans', 'Gill Sans MT'; color: #53433f; text-align: center; font-size: 14px;">Terima kasih,<br>Tim Support AdaApi</p>
+    <div style="font-family: 'Gill Sans', 'Gill Sans MT'; text-align: center; margin-top: 20px; color: #afa8a6; font-size: 12px;">
+    &copy; 2025 AdaApi
+    </div>
+  </div>
+`,
+  };
+
+  await sendMail.sendMail(mailOptions);
 
   const nearestGroup = await prisma.$queryRawTyped(
     findNearestGroup(latitude, longitude),

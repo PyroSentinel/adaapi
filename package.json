@@ -60,6 +60,7 @@
     "@tailwindcss/postcss": "^4",
     "@types/leaflet": "^1.9.18",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

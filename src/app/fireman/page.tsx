@@ -27,10 +27,12 @@ import { toast } from 'sonner';
 import { Datum, Profile } from './response';
 
 export default function FiremanPage() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [me, setMe] = useState<Profile | null>();
   const [reportsData, setReportsData] = useState<Datum[]>([]);
   const [reportsGrouped, setReportsGrouped] = useState<Datum[]>([]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const getMe = useCallback(async () => {
     const res = await fetch('/api/fireman/profile');
     const json = await res.json();
@@ -104,7 +106,7 @@ export default function FiremanPage() {
             </section>
           </TabsContent>
           <TabsContent value="sedang-diproses">
-            <section className="space-y-4">
+            <section className="space-y-4 pb-32">
               {reportsGrouped
                 .filter((rg) => rg.group.status === 'process')
                 .map((rg) => (
