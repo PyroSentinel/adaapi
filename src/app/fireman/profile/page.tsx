@@ -67,9 +67,9 @@ export default function Page() {
   return (
     <>
       {me && (
-        <main>
+        <main className='bg-gradient-to-b from-primary/5 to-primary/10 min-h-lvh'>
           <header className="relative p-4">
-            <div className="relative flex h-55 flex-col items-center justify-center gap-2 overflow-hidden rounded-4xl border-4 border-white shadow">
+            <div className="relative flex h-55 flex-col items-center justify-center gap-2 overflow-hidden rounded-4xl border-4 shadow">
               <Image
                 src={'/fireman/bg-profile.png'}
                 alt="Banner Pemadam"
@@ -77,7 +77,7 @@ export default function Page() {
                 width={1920}
                 height={1080}
               />
-              <div className="absolute right-0 bottom-0 left-0 z-10 h-1/2 rounded-t-4xl bg-white"></div>
+              <div className="absolute right-0 bottom-0 left-0 z-10 h-1/2 rounded-t-4xl bg-background"></div>
               <Avatar className="z-10 size-24">
                 <AvatarImage
                   src={
@@ -91,7 +91,7 @@ export default function Page() {
             </div>
           </header>
           <section className="px-4">
-            <div className="relative h-55 w-full overflow-hidden rounded-4xl border-4 border-white shadow">
+            <div className="relative h-55 w-full overflow-hidden rounded-4xl border-4 shadow">
               <MyMap position={[me.latitude, me.longitude]} />
               <Card className="absolute inset-x-2 bottom-2 z-10 rounded-4xl shadow">
                 <CardHeader>
@@ -143,12 +143,12 @@ export default function Page() {
               </DialogContent>
             </Dialog>
           </section>
-          <nav className="fixed inset-x-4 bottom-4 z-50 rounded-lg bg-background shadow">
+          <nav className="fixed inset-x-4 bottom-4 z-50 rounded-lg bg-background/10 shadow backdrop-blur-md">
             <div className="flex items-stretch justify-between gap-2 p-2">
               <Link href={'/fireman/history'} className="flex-1">
                 <Button
                   className="size-14 w-full flex-col gap-1"
-                  variant={'secondary'}
+                  variant={'ghost'}
                 >
                   <History className="size-7" />
                   <span className="text-xs">Riwayat</span>
@@ -157,7 +157,7 @@ export default function Page() {
               <Link href={'/fireman'} className="flex-1">
                 <Button
                   className="size-14 w-full flex-col gap-1"
-                  variant={'secondary'}
+                  variant={'ghost'}
                 >
                   <House className="size-7" />
                   <span className="text-xs">Beranda</span>

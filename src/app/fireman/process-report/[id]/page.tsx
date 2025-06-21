@@ -147,7 +147,7 @@ export default function Page() {
         <div className="h-lvh lg:col-span-2">
           <MyMap position={[report.report.latitude, report.report.longitude]} />
           <div className="space-5 fixed inset-x-0 bottom-4 h-auto px-2">
-            <Card className="relative bottom-5">
+            <Card className="relative bottom-5 bg-background/90">
               <Button
                 onClick={() => {
                   setExpanded(!expanded);
@@ -167,7 +167,7 @@ export default function Page() {
                 </CardDescription>
               </CardHeader>
             </Card>
-            <Card className={cn('gap-0', expanded ? 'relative' : 'hidden')}>
+            <Card className={cn('gap-0 bg-background/90', expanded ? 'relative' : 'hidden')}>
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Detail tambahan</CardTitle>
@@ -295,6 +295,9 @@ export default function Page() {
                   </Dialog>
                 )}
                 {report.group.status === 'process' && (
+                 me &&  report.group.fireman_report_group.some(
+                    (f) => f.fireman.id === me.id,
+                  ) ?
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button className="mt-4 w-full" type="button" size={'lg'}>
@@ -327,6 +330,40 @@ export default function Page() {
                       </DialogFooter>
                     </DialogContent>
                   </Dialog>
+                  : <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="mt-4 w-full" type="button" size={'lg'}>
+                      Proses Laporan
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Konfirmasi</DialogTitle>
+                    </DialogHeader>
+                    <div>
+                      <ConfirmLogo className="mx-auto mb-4 size-20" />
+                      <p className="text-center text-sm text-muted-foreground">
+                        Apakah kamu yakin ingin memproses laporan ini
+                        sekarang?
+                      </p>
+                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button variant={'outline'}>Tidak</Button>
+                      </DialogClose>
+                      <Button
+                        type="submit"
+                        onClick={() => {
+                          // Handle the report submission logic here
+                          handleProcessReport();
+                          // Close the dialog after processing
+                        }}
+                      >
+                        Iya
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
                 )}
                 {report.group.status === 'completed' && (
                   <Button className="mt-4 w-full" type="button" size={'lg'}>

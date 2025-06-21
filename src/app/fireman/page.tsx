@@ -58,7 +58,7 @@ export default function FiremanPage() {
     getReports();
   }, [getReports]);
   return (
-    <main>
+    <main className='bg-gradient-to-b from-primary/5 to-primary/10 min-h-lvh'>
       <header className="p-4">
         <div className="flex items-center gap-5">
           <Avatar className="size-14 border-2 border-primary">
@@ -125,12 +125,12 @@ export default function FiremanPage() {
         </Tabs>
       </section>
 
-      <nav className="fixed inset-x-4 bottom-4 z-50 rounded-lg bg-background shadow">
+      <nav className="fixed inset-x-4 bottom-4 z-50 rounded-lg bg-background/10 shadow backdrop-blur-md">
         <div className="flex items-stretch justify-between gap-2 p-2">
           <Link href={'/fireman/history'} className="flex-1">
             <Button
               className="size-14 w-full flex-col gap-1"
-              variant={'secondary'}
+              variant={'ghost'}
             >
               <History className="size-7" />
               <span className="text-xs">Riwayat</span>
@@ -148,10 +148,10 @@ export default function FiremanPage() {
           <Link href={'/fireman/profile'} className="flex-1">
             <Button
               className="size-14 w-full flex-col gap-1"
-              variant={'secondary'}
+              variant={'ghost'}
             >
               <User className="size-7" />
-              <span className="text-xs">Profile</span>
+              <span className="text-xs">Profil</span>
             </Button>
           </Link>
         </div>
