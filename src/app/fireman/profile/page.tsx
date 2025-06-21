@@ -67,7 +67,7 @@ export default function Page() {
   return (
     <>
       {me && (
-        <main className='bg-gradient-to-b from-primary/5 to-primary/10 min-h-lvh'>
+        <main className="min-h-lvh bg-gradient-to-b from-primary/5 to-primary/10">
           <header className="relative p-4">
             <div className="relative flex h-55 flex-col items-center justify-center gap-2 overflow-hidden rounded-4xl border-4 shadow">
               <Image
@@ -81,11 +81,11 @@ export default function Page() {
               <Avatar className="z-10 size-24">
                 <AvatarImage
                   src={
-                    'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
+                    'https://images.unsplash.com/photo-1592235905030-74b3fd573cca'
                   }
                   className="object-cover object-center"
                 />
-                <AvatarFallback>AP</AvatarFallback>
+                <AvatarFallback>PM</AvatarFallback>
               </Avatar>
               <h1 className="z-10 text-2xl font-medium">{me.name}</h1>
             </div>

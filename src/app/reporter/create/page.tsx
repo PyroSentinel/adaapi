@@ -40,8 +40,13 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Zoom from 'react-medium-image-zoom';
 import { toast } from 'sonner';
 import { z } from 'zod';
+
+import { ResponseData } from './response';
+
+import 'react-medium-image-zoom/dist/styles.css';
 
 const formSchema = z.object({
   media_url: z.string().url(),
@@ -118,18 +123,29 @@ export default function CreateReporterPage() {
     url: string;
   } | null>(null);
 
-  function onUpload(file: File) {
+  async function onUpload(file: File) {
     // Handle file upload logic here
     // For example, you can upload the file to a server or cloud storage
+    const formData = new FormData();
+    formData.set('type', file.type.startsWith('image/') ? 'image' : 'video');
+    formData.set('media', file);
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_MODEL_API! + '/api/reports/validation',
+      {
+        method: 'POST',
+        body: formData,
+      },
+    );
+    const json: ResponseData = await res.json();
     setMediaUrl({
       type: file.type.startsWith('image/') ? 'image' : 'video',
-      url: URL.createObjectURL(file), // Create a local URL for the file
+      url: json.data.media_url, // Create a local URL for the file
     });
     form.setValue('type', file.type.startsWith('image/') ? 'image' : 'video');
-    form.setValue('media_url', URL.createObjectURL(file));
-    form.setValue('accuracy', 100); // Set default accuracy to 100%
-    form.setValue('verified', false); // Set default verified to false
-    form.setValue('description', `Laporan media: ${file.name}`);
+    form.setValue('media_url', json.data.media_url);
+    form.setValue('accuracy', json.data.accuracy); // Set default accuracy to 100%
+    form.setValue('verified', json.data.verified); // Set default verified to false
+    form.setValue('description', json.data.description);
   }
 
   const [expanded, setExpanded] = useState(false);
@@ -166,7 +182,9 @@ export default function CreateReporterPage() {
             </CardDescription>
           </CardHeader>
         </Card>
-        <Card className={cn('bg-background/90', expanded ? 'relative' : 'hidden')}>
+        <Card
+          className={cn('bg-background/90', expanded ? 'relative' : 'hidden')}
+        >
           <CardHeader>
             <CardTitle>Detail tambahan</CardTitle>
             <CardDescription>
@@ -230,32 +248,34 @@ export default function CreateReporterPage() {
                         <FormControl>
                           {mediaUrl ? (
                             <div>
-                              <div className="relative mt-2 flex items-center gap-2">
-                                <Button
-                                  className="absolute top-2 right-2 z-10 rounded-full"
-                                  size={'icon'}
-                                  variant={'destructive'}
-                                  onClick={() => setMediaUrl(null)}
-                                  type="button"
-                                >
-                                  <X />
-                                </Button>
-                                {mediaUrl.type === 'image' ? (
-                                  <Image
-                                    src={field.value || mediaUrl.url}
-                                    alt="Uploaded media"
-                                    className="aspect-video h-50 w-full rounded-md object-cover"
-                                    width={1920}
-                                    height={1080}
-                                  />
-                                ) : (
-                                  <video
-                                    src={field.value || mediaUrl.url}
-                                    controls
-                                    className="aspect-video h-50 w-full rounded-md object-cover"
-                                  />
-                                )}
-                              </div>
+                              <Zoom>
+                                <div className="relative mt-2 flex items-center gap-2">
+                                  <Button
+                                    className="absolute top-2 right-2 z-10 rounded-full"
+                                    size={'icon'}
+                                    variant={'destructive'}
+                                    onClick={() => setMediaUrl(null)}
+                                    type="button"
+                                  >
+                                    <X />
+                                  </Button>
+                                  {mediaUrl.type === 'image' ? (
+                                    <Image
+                                      src={field.value || mediaUrl.url}
+                                      alt="Uploaded media"
+                                      className="aspect-video h-50 w-full rounded-md object-cover"
+                                      width={1920}
+                                      height={1080}
+                                    />
+                                  ) : (
+                                    <video
+                                      src={field.value || mediaUrl.url}
+                                      controls
+                                      className="aspect-video h-50 w-full rounded-md object-cover"
+                                    />
+                                  )}
+                                </div>
+                              </Zoom>
                             </div>
                           ) : (
                             <label

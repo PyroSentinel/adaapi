@@ -58,13 +58,13 @@ export default function FiremanPage() {
     getReports();
   }, [getReports]);
   return (
-    <main className='bg-gradient-to-b from-primary/5 to-primary/10 min-h-lvh'>
+    <main className="min-h-lvh bg-gradient-to-b from-primary/5 to-primary/10">
       <header className="p-4">
         <div className="flex items-center gap-5">
           <Avatar className="size-14 border-2 border-primary">
             <AvatarImage
               src={
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
+                'https://images.unsplash.com/photo-1592235905030-74b3fd573cca'
               }
               className="object-cover object-center"
             />
@@ -128,10 +128,7 @@ export default function FiremanPage() {
       <nav className="fixed inset-x-4 bottom-4 z-50 rounded-lg bg-background/10 shadow backdrop-blur-md">
         <div className="flex items-stretch justify-between gap-2 p-2">
           <Link href={'/fireman/history'} className="flex-1">
-            <Button
-              className="size-14 w-full flex-col gap-1"
-              variant={'ghost'}
-            >
+            <Button className="size-14 w-full flex-col gap-1" variant={'ghost'}>
               <History className="size-7" />
               <span className="text-xs">Riwayat</span>
             </Button>
@@ -146,10 +143,7 @@ export default function FiremanPage() {
             </Button>
           </Link>
           <Link href={'/fireman/profile'} className="flex-1">
-            <Button
-              className="size-14 w-full flex-col gap-1"
-              variant={'ghost'}
-            >
+            <Button className="size-14 w-full flex-col gap-1" variant={'ghost'}>
               <User className="size-7" />
               <span className="text-xs">Profil</span>
             </Button>
@@ -171,15 +165,7 @@ function CardWithDialog({
     <Card className="relative gap-3 py-4">
       <CardHeader className="flex items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <Avatar className="size-6 border-2 border-primary">
-            <AvatarImage
-              src={
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
-              }
-              className="object-cover object-center"
-            />
-            <AvatarFallback>AP</AvatarFallback>
-          </Avatar>
+          <User className="size-6 rounded-full border-2 border-primary" />
           <p className="leading-4 font-medium">
             {mainReport.report.email || 'Anonim'}
           </p>
@@ -266,15 +252,7 @@ function ChildCard({ data }: { data: Datum }) {
     <Card className="relative gap-3 py-4">
       <CardHeader className="flex items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <Avatar className="size-6 border-2 border-primary">
-            <AvatarImage
-              src={
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
-              }
-              className="object-cover object-center"
-            />
-            <AvatarFallback>AP</AvatarFallback>
-          </Avatar>
+          <User className="size-6 rounded-full border-2 border-primary" />
           <p className="leading-4 font-medium">
             {data.report.email || 'Anonim'}
           </p>

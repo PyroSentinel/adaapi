@@ -15,12 +15,9 @@ export default function EndCTA() {
         </h1>
         <p className="z-10 mb-6 max-w-4xl text-center text-sm text-secondary-foreground/80 md:text-lg">
           Bergabunglah bersama warga, relawan, dan instansi yang sudah
-          menggunakan adaapi untuk pelaporan kebakaran secara digital. Laporkan
-          kejadian hanya dalam 10 detik, lengkap dengan foto/video dan lokasi
-          otomatis, lalu biarkan sistem kami menghubungkan langsung ke petugas
-          pemadam dan pemerintah terkait. Cepat. Cerdas. Tanggap.
+          menggunakan adaapi untuk pelaporan kebakaran secara digital.
         </p>
-        <Link href="#" className="z-10">
+        <Link href="\reporter" className="z-10">
           <Button size={'lg'}>
             Coba Sekarang
             <ArrowUpRight />

@@ -1,6 +1,5 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -33,7 +32,7 @@ import {
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
-import { CheckIcon, Filter, History, House, MapPin } from 'lucide-react';
+import { CheckIcon, Filter, History, House, MapPin, User } from 'lucide-react';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'sonner';
@@ -43,8 +42,8 @@ import { Datum } from './response';
 const STATUS = [
   { value: 'pending', label: 'Pending' },
   { value: 'process', label: 'Proses' },
-  { value: 'completed', label: 'Selesai'},
-  { value: 'all', label: 'Semua'},
+  { value: 'completed', label: 'Selesai' },
+  { value: 'all', label: 'Semua' },
 ];
 
 export default function ReporterHistoryPage() {
@@ -70,8 +69,8 @@ export default function ReporterHistoryPage() {
   }, [getReports]);
 
   return (
-    <main className='bg-gradient-to-b from-primary/5 to-primary/10 min-h-lvh'>
-      <header className="px-4 mt-4">
+    <main className="min-h-lvh bg-gradient-to-b from-primary/5 to-primary/10">
+      <header className="mt-4 px-4">
         <h1 className="text-center text-xl font-semibold">Riwayat Laporan</h1>
       </header>
       <section className="my-4 flex items-center justify-between gap-2 px-4">
@@ -121,19 +120,30 @@ export default function ReporterHistoryPage() {
         </Popover>
       </section>
       <section className="my-4 space-y-4 px-4 pb-32">
-        {reportsGrouped.map((rg) => (
-          status === 'all' ?
-          <CardWithDialog key={rg.id} mainReport={rg} allReport={reportsData} />
-          : rg.group.status === status &&
-          <CardWithDialog key={rg.id} mainReport={rg} allReport={reportsData} />
-        ))}
+        {reportsGrouped.map((rg) =>
+          status === 'all' ? (
+            <CardWithDialog
+              key={rg.id}
+              mainReport={rg}
+              allReport={reportsData}
+            />
+          ) : (
+            rg.group.status === status && (
+              <CardWithDialog
+                key={rg.id}
+                mainReport={rg}
+                allReport={reportsData}
+              />
+            )
+          ),
+        )}
         {reportsGrouped.length === 0 && (
           <p className="text-center text-sm text-muted-foreground">
             Tidak ada laporan dengan status {status || 'terpilih'}
           </p>
         )}
       </section>
-      <nav className="fixed inset-x-4 bottom-4 z-50 rounded-lg shadow backdrop-blur-md  bg-background/10">
+      <nav className="fixed inset-x-4 bottom-4 z-50 rounded-lg bg-background/10 shadow backdrop-blur-md">
         <div className="flex items-stretch justify-between gap-2 p-2">
           <Link href={'/reporter'} className="flex-1">
             <Button className="size-14 w-full flex-col gap-1" variant={'ghost'}>
@@ -167,15 +177,7 @@ function CardWithDialog({
     <Card className="relative gap-3 py-4">
       <CardHeader className="flex items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <Avatar className="size-6 border-2 border-primary">
-            <AvatarImage
-              src={
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
-              }
-              className="object-cover object-center"
-            />
-            <AvatarFallback>AP</AvatarFallback>
-          </Avatar>
+          <User className="size-6 rounded-full border-2 border-primary" />
           <p className="leading-4 font-medium">
             {mainReport.report.email || 'Anonim'}
           </p>
@@ -262,15 +264,7 @@ function ChildCard({ data }: { data: Datum }) {
     <Card className="relative gap-3 py-4">
       <CardHeader className="flex items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <Avatar className="size-6 border-2 border-primary">
-            <AvatarImage
-              src={
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
-              }
-              className="object-cover object-center"
-            />
-            <AvatarFallback>AP</AvatarFallback>
-          </Avatar>
+          <User className="size-6 rounded-full border-2 border-primary" />
           <p className="leading-4 font-medium">
             {data.report.email || 'Anonim'}
           </p>

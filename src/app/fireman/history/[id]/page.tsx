@@ -21,9 +21,12 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import Zoom from 'react-medium-image-zoom';
 import { toast } from 'sonner';
 
 import { Data, Response } from './response';
+
+import 'react-medium-image-zoom/dist/styles.css';
 
 export default function DetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -126,23 +129,25 @@ export default function DetailPage() {
                   />
 
                   <div>
-                    <div className="relative mt-2 flex items-center gap-2">
-                      {report.report.type === 'image' ? (
-                        <Image
-                          src={report.report.media_url}
-                          alt="Uploaded media"
-                          className="aspect-video h-50 w-full rounded-md object-cover"
-                          width={1920}
-                          height={1080}
-                        />
-                      ) : (
-                        <video
-                          src={report.report.media_url}
-                          controls
-                          className="aspect-video h-50 w-full rounded-md object-cover"
-                        />
-                      )}
-                    </div>
+                    <Zoom>
+                      <div className="relative mt-2 flex items-center gap-2">
+                        {report.report.type === 'image' ? (
+                          <Image
+                            src={report.report.media_url}
+                            alt="Uploaded media"
+                            className="aspect-video h-50 w-full rounded-md object-cover"
+                            width={1920}
+                            height={1080}
+                          />
+                        ) : (
+                          <video
+                            src={report.report.media_url}
+                            controls
+                            className="aspect-video h-50 w-full rounded-md object-cover"
+                          />
+                        )}
+                      </div>
+                    </Zoom>
                   </div>
 
                   <div className="flex items-stretch justify-center gap-2">

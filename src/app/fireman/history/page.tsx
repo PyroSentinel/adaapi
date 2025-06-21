@@ -1,6 +1,5 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -25,6 +24,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 import { Datum } from './response';
+
+import 'react-medium-image-zoom/dist/styles.css';
 
 const STATUS = [
   { value: 'pending', label: 'Pending' },
@@ -54,7 +55,7 @@ export default function FiremanHistoryPage() {
     getReports();
   }, [getReports]);
   return (
-    <main className='bg-gradient-to-b from-primary/5 to-primary/10 min-h-lvh'>
+    <main className="min-h-lvh bg-gradient-to-b from-primary/5 to-primary/10">
       <header className="px-4 pt-4">
         <h1 className="text-center text-xl font-semibold">Riwayat Laporan</h1>
       </header>
@@ -90,19 +91,13 @@ export default function FiremanHistoryPage() {
             </Button>
           </Link>
           <Link href={'/fireman'} className="flex-1">
-            <Button
-              className="size-14 w-full flex-col gap-1"
-              variant={'ghost'}
-            >
+            <Button className="size-14 w-full flex-col gap-1" variant={'ghost'}>
               <House className="size-7" />
               <span className="text-xs">Beranda</span>
             </Button>
           </Link>
           <Link href={'/fireman/profile'} className="flex-1">
-            <Button
-              className="size-14 w-full flex-col gap-1"
-              variant={'ghost'}
-            >
+            <Button className="size-14 w-full flex-col gap-1" variant={'ghost'}>
               <User className="size-7" />
               <span className="text-xs">Profile</span>
             </Button>
@@ -124,15 +119,7 @@ function CardWithDialog({
     <Card className="relative gap-3 py-4">
       <CardHeader className="flex items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <Avatar className="size-6 border-2 border-primary">
-            <AvatarImage
-              src={
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
-              }
-              className="object-cover object-center"
-            />
-            <AvatarFallback>AP</AvatarFallback>
-          </Avatar>
+          <User className="size-6 rounded-full border-2 border-primary" />
           <p className="leading-4 font-medium">
             {mainReport.report.email || 'Anonim'}
           </p>
@@ -219,15 +206,7 @@ function ChildCard({ data }: { data: Datum }) {
     <Card className="relative gap-3 py-4">
       <CardHeader className="flex items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <Avatar className="size-6 border-2 border-primary">
-            <AvatarImage
-              src={
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
-              }
-              className="object-cover object-center"
-            />
-            <AvatarFallback>AP</AvatarFallback>
-          </Avatar>
+          <User className="size-6 rounded-full border-2 border-primary" />
           <p className="leading-4 font-medium">
             {data.report.email || 'Anonim'}
           </p>

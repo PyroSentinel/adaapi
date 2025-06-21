@@ -15,9 +15,11 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { Biohazard, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+import Logo from '../custom/logo';
 
 export default function Header() {
   const menus = [
@@ -43,8 +45,8 @@ export default function Header() {
           prefetch={false}
         >
           <Button className="rounded-full">
-            <Biohazard />
-            <span className="">Labora</span>
+            <Logo />
+            <span className="">adaapi</span>
           </Button>
         </Link>
         <div className="flex items-center gap-4">

@@ -125,7 +125,7 @@ reporter.post('/', zValidator('json', ReportSchema), async (c) => {
     const group = await prisma.group.create({
       data: {
         report_id: report.id,
-        status: 'process',
+        status: 'pending',
       },
     });
 

@@ -15,6 +15,7 @@ import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSetCookie } from 'cookies-next/client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -64,7 +65,7 @@ export default function FiremanLoginPage() {
         height={1920}
         className="h-lvh w-full object-cover"
       />
-      <LogoAdmin className="fixed top-30 left-1/2 size-25 -translate-x-1/2" />
+      <LogoAdmin className="fixed top-1/5 left-1/2 size-25 -translate-x-1/2" />
       <div className="fixed inset-x-0 bottom-0 h-110 rounded-t-4xl bg-background px-4 pt-8">
         <h1 className="mb-2 text-center text-2xl font-medium">
           Selamat Datang
@@ -117,7 +118,12 @@ export default function FiremanLoginPage() {
         </Form>
         <p className="mt-2 text-center text-sm text-muted-foreground">
           Belum punya akun?{' '}
-          <span className="hover:underline">Buat sekarang</span>
+          <Link
+            href={'/fireman/register'}
+            className="text-amber-400 hover:underline"
+          >
+            Buat sekarang
+          </Link>
         </p>
       </div>
     </div>

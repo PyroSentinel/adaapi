@@ -1,13 +1,6 @@
 'use client';
 
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import {
-  AlertTriangle,
-  ArrowRight,
-  ArrowUpRight,
-  BellDot,
-  Mail,
-} from 'lucide-react';
+import { ArrowRight, ArrowUpRight, BellDot, Mail } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -36,11 +29,7 @@ export default function Hero() {
           integrasi antarinstansi untuk transformasi layanan darurat.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 lg:flex-row lg:justify-start 2xl:mt-12">
-          <Link
-            href="tel:+628123456789"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href="/reporter" target="_blank" rel="noopener noreferrer">
             <Button className="flex items-center gap-2 lg:px-6 lg:py-5 xl:px-8 xl:py-6">
               <span>Mulai Berkontribusi</span>
               <ArrowUpRight className="size-4" />

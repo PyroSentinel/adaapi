@@ -7,7 +7,7 @@ export default function ReporterPage() {
   return (
     <main className="relative h-lvh bg-[radial-gradient(circle_at_center,color-mix(in_oklab,_var(--primary)_60%,_transparent)_0%,color-mix(in_oklab,_var(--primary)_5%,_transparent)_40%)]">
       <section className="mb-4 flex flex-col gap-64 p-4">
-        <div className='absolute inset-x-8 top-18'>
+        <div className="absolute inset-x-8 top-18">
           <h1 className="mb-2 text-center text-3xl font-semibold">
             Ada Bahaya?
           </h1>

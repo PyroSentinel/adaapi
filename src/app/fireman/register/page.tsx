@@ -36,6 +36,7 @@ import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronsUpDown, MapPin } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -218,7 +219,7 @@ export default function RegisterFiremanPage() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button className="w-full" type="button" size={'lg'}>
-                      Register
+                      Daftar
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
@@ -228,7 +229,8 @@ export default function RegisterFiremanPage() {
                     <div>
                       <ConfirmLogo className="mx-auto mb-4 size-20" />
                       <p className="text-center text-sm text-muted-foreground">
-                        Apakah kamu yakin untuk melakukan registrasi akun fireman?
+                        Apakah kamu yakin untuk melakukan registrasi akun
+                        fireman?
                       </p>
                     </div>
                     <DialogFooter>
@@ -249,7 +251,13 @@ export default function RegisterFiremanPage() {
               </form>
             </Form>
             <p className="mt-2 text-center text-sm text-muted-foreground">
-              Sudah punya akun? <span className="hover:underline">Masuk</span>
+              Sudah punya akun?{' '}
+              <Link
+                href={'/fireman/login'}
+                className="text-amber-400 hover:underline"
+              >
+                Masuk
+              </Link>
             </p>
           </CardContent>
         </Card>

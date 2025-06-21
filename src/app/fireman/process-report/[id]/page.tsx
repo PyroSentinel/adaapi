@@ -32,10 +32,13 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import Zoom from 'react-medium-image-zoom';
 import { toast } from 'sonner';
 
 import { Profile } from '../../response';
 import { Data, Response } from './response';
+
+import 'react-medium-image-zoom/dist/styles.css';
 
 export default function Page() {
   const router = useRouter();
@@ -167,7 +170,12 @@ export default function Page() {
                 </CardDescription>
               </CardHeader>
             </Card>
-            <Card className={cn('gap-0 bg-background/90', expanded ? 'relative' : 'hidden')}>
+            <Card
+              className={cn(
+                'gap-0 bg-background/90',
+                expanded ? 'relative' : 'hidden',
+              )}
+            >
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Detail tambahan</CardTitle>
@@ -213,23 +221,25 @@ export default function Page() {
                   />
 
                   <div>
-                    <div className="relative mt-2 flex items-center gap-2">
-                      {report.report.type === 'image' ? (
-                        <Image
-                          src={report.report.media_url}
-                          alt="Uploaded media"
-                          className="aspect-video h-50 w-full rounded-md object-cover"
-                          width={1920}
-                          height={1080}
-                        />
-                      ) : (
-                        <video
-                          src={report.report.media_url}
-                          controls
-                          className="aspect-video h-50 w-full rounded-md object-cover"
-                        />
-                      )}
-                    </div>
+                    <Zoom>
+                      <div className="relative mt-2 flex items-center gap-2">
+                        {report.report.type === 'image' ? (
+                          <Image
+                            src={report.report.media_url}
+                            alt="Uploaded media"
+                            className="aspect-video h-50 w-full rounded-md object-cover"
+                            width={1920}
+                            height={1080}
+                          />
+                        ) : (
+                          <video
+                            src={report.report.media_url}
+                            controls
+                            className="aspect-video h-50 w-full rounded-md object-cover"
+                          />
+                        )}
+                      </div>
+                    </Zoom>
                   </div>
 
                   <div className="flex items-stretch justify-center gap-2">
@@ -294,77 +304,87 @@ export default function Page() {
                     </DialogContent>
                   </Dialog>
                 )}
-                {report.group.status === 'process' && (
-                 me &&  report.group.fireman_report_group.some(
+                {report.group.status === 'process' &&
+                  (me &&
+                  report.group.fireman_report_group.some(
                     (f) => f.fireman.id === me.id,
-                  ) ?
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button className="mt-4 w-full" type="button" size={'lg'}>
-                        Selesaikan laporan
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Konfirmasi</DialogTitle>
-                      </DialogHeader>
-                      <div>
-                        <ConfirmLogo className="mx-auto mb-4 size-20" />
-                        <p className="text-center text-sm text-muted-foreground">
-                          Apakah kamu yakin ingin menyelesaikan laporain ini
-                          sekarang?
-                        </p>
-                      </div>
-                      <DialogFooter>
-                        <DialogClose asChild>
-                          <Button variant={'outline'}>Tidak</Button>
-                        </DialogClose>
+                  ) ? (
+                    <Dialog>
+                      <DialogTrigger asChild>
                         <Button
-                          type="submit"
-                          onClick={() => {
-                            handleCompletedReport();
-                          }}
+                          className="mt-4 w-full"
+                          type="button"
+                          size={'lg'}
                         >
-                          Iya
+                          Selesaikan laporan
                         </Button>
-                      </DialogFooter>
-                    </DialogContent>
-                  </Dialog>
-                  : <Dialog>
-                  <DialogTrigger asChild>
-                    <Button className="mt-4 w-full" type="button" size={'lg'}>
-                      Proses Laporan
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Konfirmasi</DialogTitle>
-                    </DialogHeader>
-                    <div>
-                      <ConfirmLogo className="mx-auto mb-4 size-20" />
-                      <p className="text-center text-sm text-muted-foreground">
-                        Apakah kamu yakin ingin memproses laporan ini
-                        sekarang?
-                      </p>
-                    </div>
-                    <DialogFooter>
-                      <DialogClose asChild>
-                        <Button variant={'outline'}>Tidak</Button>
-                      </DialogClose>
-                      <Button
-                        type="submit"
-                        onClick={() => {
-                          // Handle the report submission logic here
-                          handleProcessReport();
-                          // Close the dialog after processing
-                        }}
-                      >
-                        Iya
-                      </Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog>
-                )}
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Konfirmasi</DialogTitle>
+                        </DialogHeader>
+                        <div>
+                          <ConfirmLogo className="mx-auto mb-4 size-20" />
+                          <p className="text-center text-sm text-muted-foreground">
+                            Apakah kamu yakin ingin menyelesaikan laporain ini
+                            sekarang?
+                          </p>
+                        </div>
+                        <DialogFooter>
+                          <DialogClose asChild>
+                            <Button variant={'outline'}>Tidak</Button>
+                          </DialogClose>
+                          <Button
+                            type="submit"
+                            onClick={() => {
+                              handleCompletedReport();
+                            }}
+                          >
+                            Iya
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  ) : (
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button
+                          className="mt-4 w-full"
+                          type="button"
+                          size={'lg'}
+                        >
+                          Proses Laporan
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Konfirmasi</DialogTitle>
+                        </DialogHeader>
+                        <div>
+                          <ConfirmLogo className="mx-auto mb-4 size-20" />
+                          <p className="text-center text-sm text-muted-foreground">
+                            Apakah kamu yakin ingin memproses laporan ini
+                            sekarang?
+                          </p>
+                        </div>
+                        <DialogFooter>
+                          <DialogClose asChild>
+                            <Button variant={'outline'}>Tidak</Button>
+                          </DialogClose>
+                          <Button
+                            type="submit"
+                            onClick={() => {
+                              // Handle the report submission logic here
+                              handleProcessReport();
+                              // Close the dialog after processing
+                            }}
+                          >
+                            Iya
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  ))}
                 {report.group.status === 'completed' && (
                   <Button className="mt-4 w-full" type="button" size={'lg'}>
                     Laporan telah selesai
